@@ -1,23 +1,36 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
 
 @Component({
   selector: 'app-school',
   templateUrl: './school.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   standalone: true,
 })
 export class SchoolComponent implements OnInit {
   schools: SchoolModel[] = [];
-  constructor(public commonService: CommonService) {}
+  addUpdateSchool: boolean = false;
+  myForm: FormGroup;
+
+  constructor(public commonService: CommonService, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.getAllSchool();
+    this.myForm = this.fb.group({
+      schoolName: ['', Validators.required],
+      schoolocation: ['', [Validators.required]],
+    });
   }
 
-  addSchool() {
+  addSchool(myForm: FormGroup) {
     const school = new SchoolModel();
     this.commonService.addSchool(school).subscribe((resp: any) => {});
   }
