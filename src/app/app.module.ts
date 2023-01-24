@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
+import { RouterModule } from '@angular/router';
+
+const routes = [];
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, HelloComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+  declarations: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
