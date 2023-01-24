@@ -8,16 +8,13 @@ import { SchoolModel } from './school.model';
   providedIn: 'root',
 })
 export class CommonService {
-  url =
-    'https://expresssimplexpaltv-ui5t--3010.local-credentialless.webcontainer.io/';
+  url = '';
   classInfo: ClassInfoModel[] = [];
   constructor(private readonly http: HttpClient) {}
 
   getSchools(): Observable<any> {
     const url = `${this.url}/getSchools`;
-    return this.http.get(
-      'https://expresssimplexpaltv-ui5t--3010.local-credentialless.webcontainer.io/getSchool'
-    );
+    return this.http.get(url);
   }
 
   getSchool(schoolId: number): Observable<any> {
