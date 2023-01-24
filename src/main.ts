@@ -1,13 +1,13 @@
 import './polyfills';
 
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app/children-routes';
 
-bootstrapApplication(AppComponent)
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)],
+})
   .then((ref) => {
     // Ensure Angular destroys itself on hot reloads.
     if (window['ngRef']) {
