@@ -1,21 +1,27 @@
-<div class="container">
-  <div class="col-3">
-    <div class="list-group">
-      <a routerLink="/dashboard" class="list-group-item list-group-item-action"
-        >Dashboard</a
-      >
-      <a routerLink="/school" class="list-group-item list-group-item-action"
-        >School</a
-      >
-      <a routerLink="/marks" class="list-group-item list-group-item-action"
-        >Marks</a
-      >
-      <a routerLink="/class" class="list-group-item list-group-item-action"
-        >Class</a
-      >
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <nav id="navbar-example2" class="navbar navbar-light bg-light">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/school" class="nav-link">School</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/marks" class="nav-link">Marks</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/class" class="nav-link">Class</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
-  <div class="col-9">
-    <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-12">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
