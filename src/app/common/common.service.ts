@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ClassInfoModel } from './class-info.model';
 import { SchoolModel } from './school.model';
 
@@ -6,8 +8,27 @@ import { SchoolModel } from './school.model';
   providedIn: 'root',
 })
 export class CommonService {
-  schools: SchoolModel[] = [];
-
+  url = ''; //common url
   classInfo: ClassInfoModel[] = [];
-  constructor() {}
+  constructor(private readonly http: HttpClient) {}
+
+  getSchools(): Observable<any> {
+    const url = `${this.url}/getSchools`;
+    return this.http.get(url);
+  }
+
+  getSchool(schoolId: number): Observable<any> {
+    const url = `${this.url}/getSchool?schoolId=${schoolId}`;
+    return this.http.get(url);
+  }
+
+  addSchool(schoolInfo: SchoolModel) {
+    const url = `${this.url}/addSchool`;
+    return this.http.post(url, schoolInfo);
+  }
+
+  updateSchool(schoolInfo: SchoolModel) {
+    const url = `${this.url}/updateSchool`;
+    return this.http.put(url, schoolInfo);
+  }
 }
