@@ -15,7 +15,9 @@ export class CommonService {
 
   getSchools(): Observable<any> {
     const url = `${this.url}/getSchools`;
-    return this.http.get(url);
+    return this.http.get(
+      'https://expresssimplexpaltv-ui5t--3010.local-credentialless.webcontainer.io/getSchool'
+    );
   }
 
   getSchool(schoolId: number): Observable<any> {
