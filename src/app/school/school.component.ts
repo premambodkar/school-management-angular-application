@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
@@ -5,8 +6,8 @@ import { SchoolModel } from '../common/school.model';
 @Component({
   selector: 'app-school',
   templateUrl: './school.component.html',
+  imports: [CommonModule],
   standalone: true,
-  styleUrls: ['./school.component.css'],
 })
 export class SchoolComponent implements OnInit {
   schools: SchoolModel[] = [];
@@ -18,19 +19,23 @@ export class SchoolComponent implements OnInit {
 
   addSchool() {
     const school = new SchoolModel();
+    this.commonService.addSchool(school).subscribe((resp: any) => {});
+  }
 
-    this.commonService.addSchool().subscribe((resp: any) => {
-      this.schools = _.clonedeep(resp);
+  getSchool(schoolId: number) {
+    this.commonService.getSchool(schoolId).subscribe((resp: any) => {
+      this.schools = resp;
     });
   }
 
-  getSchool() {}
-
-  updateSchool() {}
+  updateSchool() {
+    const school = new SchoolModel();
+    this.commonService.updateSchool(school).subscribe((resp: any) => {});
+  }
 
   getAllSchool() {
     this.commonService.getSchools().subscribe((resp: any) => {
-      this.schools = _.clonedeep(resp);
+      this.schools = resp;
     });
   }
 }

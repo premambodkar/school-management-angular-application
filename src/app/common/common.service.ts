@@ -8,7 +8,8 @@ import { SchoolModel } from './school.model';
   providedIn: 'root',
 })
 export class CommonService {
-  url = ''; //common url
+  url =
+    'https://expresssimplexpaltv-ui5t--3010.local-credentialless.webcontainer.io/';
   classInfo: ClassInfoModel[] = [];
   constructor(private readonly http: HttpClient) {}
 
