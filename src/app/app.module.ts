@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: DashboardComponent,
     children: [
       {
         path: 'school',
@@ -30,7 +32,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
-  declarations: [],
-  bootstrap: [AppComponent],
+  declarations: [AppComponent, DashboardComponent],
+  bootstrap: [AppComponent, DashboardComponent],
 })
 export class AppModule {}

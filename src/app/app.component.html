@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="col-3">
+    <div class="list-group">
+      <a routerLink="/" class="list-group-item list-group-item-action"
+        >Dashboard</a
+      >
+      <a routerLink="/school" class="list-group-item list-group-item-action"
+        >School</a
+      >
+      <a routerLink="/marks" class="list-group-item list-group-item-action"
+        >Marks</a
+      >
+      <a routerLink="/class" class="list-group-item list-group-item-action"
+        >Class</a
+      >
+    </div>
+  </div>
+  <div class="col-9">
+    <router-outlet></router-outlet>
+  </div>
+</div>
