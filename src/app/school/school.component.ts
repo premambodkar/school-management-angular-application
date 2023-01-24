@@ -32,6 +32,8 @@ export class SchoolComponent implements OnInit {
 
   addSchool(myForm: FormGroup) {
     const school = new SchoolModel();
+    school.name = this.myForm.value['schoolName'];
+    school.location = this.myForm.value['schoolocation'];
     this.commonService.addSchool(school).subscribe((resp: any) => {});
   }
 
