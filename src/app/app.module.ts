@@ -9,10 +9,19 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+
     children: [
       {
-        path: 'school',
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'class',
         loadComponent: () =>
           import('./sclass/sclass.component').then((m) => m.SclassComponent),
       },
