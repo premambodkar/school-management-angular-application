@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { Routes } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
@@ -23,7 +22,7 @@ const routes: Routes = [
 @Component({
   selector: 'app-school',
   templateUrl: './school.component.html',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   standalone: true,
 })
 export class SchoolComponent implements OnInit {

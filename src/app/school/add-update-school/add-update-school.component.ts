@@ -8,6 +8,7 @@ import { SchoolModel } from '../../common/school.model';
   selector: 'app-add-update-school',
   templateUrl: './add-update-school.component.html',
   standalone: true,
+  import: [CommonModule, ReactiveFormsModule],
 })
 export class AddUpdateSchoolComponent implements OnInit {
   @Input()
