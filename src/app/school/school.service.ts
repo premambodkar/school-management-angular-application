@@ -14,15 +14,15 @@ export class SchoolService {
   ) {}
 
   getSchools(): Observable<any> {
-    // return of([
-    //   {
-    //     id: 1,
-    //     name: 'Dav',
-    //     location: 'Pune',
-    //   },
-    // ]);
-    const url = `https://school-management-node-application.premambodkar.repl.co/getSchool`;
-    return this.http.get(url);
+    return of([
+      {
+        id: 1,
+        name: 'Dav',
+        location: 'Pune',
+      },
+    ]);
+    // const url = `https://school-management-node-application.premambodkar.repl.co/getSchool`;
+    // return this.http.get(url);
   }
 
   getSchool(schoolId: number): Observable<any> {

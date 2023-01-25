@@ -1,12 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SclassModel } from '../../common/sclass.model';
 import { SclassService } from '../sclass.service';
 
 @Component({
   selector: 'app-add-update-sclass',
   templateUrl: './add-update-sclass.component.html',
+  imports: [ReactiveFormsModule],
   standalone: true,
 })
 export class AddUpdateSclassComponent implements OnInit {
@@ -19,6 +25,7 @@ export class AddUpdateSclassComponent implements OnInit {
   constructor(
     public sclassService: SclassService,
     private fb: FormBuilder,
+    private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
@@ -44,11 +51,13 @@ export class AddUpdateSclassComponent implements OnInit {
       this.sclass.divisions = this.myForm.value['divisions'];
       this.sclass.noOfStudent = this.myForm.value['noOfStudent'];
       if (this.sclass.id) {
-        this.sclassService
-          .updateSClass(this.sclass)
-          .subscribe((resp: any) => {});
+        this.sclassService.updateSClass(this.sclass).subscribe((resp: any) => {
+          this.router.navigate(['./class']);
+        });
       } else {
-        this.sclassService.addSClass(this.sclass).subscribe((resp: any) => {});
+        this.sclassService.addSClass(this.sclass).subscribe((resp: any) => {
+          this.router.navigate(['./class']);
+        });
       }
     }
   }

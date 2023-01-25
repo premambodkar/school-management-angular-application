@@ -18,8 +18,8 @@ export const routes: Routes = [
       },
       {
         path: 'class',
-        loadComponent: () =>
-          import('./sclass/sclass.component').then((m) => m.SclassComponent),
+        loadChildren: () =>
+          import('./sclass/sclass.route').then((m) => m.sclassRoutes),
       },
       {
         path: 'school',

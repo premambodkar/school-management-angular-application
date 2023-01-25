@@ -6,23 +6,13 @@ export const schoolRoutes: Routes = [
   {
     path: '',
     component: SchoolComponent,
-    children: [
-      {
-        path: 'add',
-        component: AddUpdateSchoolComponent,
-      },
-      {
-        path: 'update/:schoolId',
-        component: AddUpdateSchoolComponent,
-      },
-    ],
   },
   {
     path: 'add',
     component: AddUpdateSchoolComponent,
   },
   {
-    path: 'update/:schoolId',
+    path: 'update',
     component: AddUpdateSchoolComponent,
   },
 ];
