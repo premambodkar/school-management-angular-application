@@ -10,6 +10,7 @@ import { SchoolModel } from './school.model';
 export class CommonService {
   url = '';
   classInfo: ClassInfoModel[] = [];
+
   constructor(private readonly http: HttpClient) {}
 
   getSchools(): Observable<any> {
@@ -37,5 +38,10 @@ export class CommonService {
   updateSchool(schoolInfo: SchoolModel) {
     const url = `${this.url}/updateSchool`;
     return this.http.put(url, schoolInfo);
+  }
+
+  deleteSchool(schoolId: number) {
+    const url = `${this.url}/getSchool?schoolId=${schoolId}`;
+    return this.http.delete(url);
   }
 }

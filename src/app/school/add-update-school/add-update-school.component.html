@@ -1,0 +1,25 @@
+<form [formGroup]="myForm" (ngSubmit)="addSchool(myForm)">
+  <div class="form-group">
+    <label for="schoolName">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="schoolName"
+      formControlName="schoolName"
+      name="schoolName"
+      placeholder="Enter School Name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="schoolocation">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="schoolocation"
+      formControlName="schoolocation"
+      name="schoolocation"
+      placeholder="Enter School Location"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

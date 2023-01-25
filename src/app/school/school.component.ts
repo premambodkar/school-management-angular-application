@@ -1,13 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Routes } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
+
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: 'add',
+        loadComponent: () =>
+          import('./add-update-school/add-update-school.component').then(
+            (m) => m.AddUpdateSchoolComponent
+          ),
+      },
+    ],
+  },
+];
 
 @Component({
   selector: 'app-school',
@@ -17,24 +28,13 @@ import { SchoolModel } from '../common/school.model';
 })
 export class SchoolComponent implements OnInit {
   schools: SchoolModel[] = [];
+  schoolId!: number;
   addUpdateSchool: boolean = false;
-  myForm: FormGroup;
 
-  constructor(public commonService: CommonService, private fb: FormBuilder) {}
+  constructor(public commonService: CommonService) {}
 
   ngOnInit() {
     this.getAllSchool();
-    this.myForm = this.fb.group({
-      schoolName: ['', Validators.required],
-      schoolocation: ['', [Validators.required]],
-    });
-  }
-
-  addSchool(myForm: FormGroup) {
-    const school = new SchoolModel();
-    school.name = this.myForm.value['schoolName'];
-    school.location = this.myForm.value['schoolocation'];
-    this.commonService.addSchool(school).subscribe((resp: any) => {});
   }
 
   getSchool(schoolId: number) {
@@ -43,14 +43,15 @@ export class SchoolComponent implements OnInit {
     });
   }
 
-  updateSchool() {
-    const school = new SchoolModel();
-    this.commonService.updateSchool(school).subscribe((resp: any) => {});
-  }
-
   getAllSchool() {
     this.commonService.getSchools().subscribe((resp: any) => {
       this.schools = resp;
+    });
+  }
+
+  deleteSchool(schoolId: number) {
+    this.commonService.deleteSchool(schoolId).subscribe((resp: any) => {
+      this.getAllSchool();
     });
   }
 }
