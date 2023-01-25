@@ -1,28 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
-
-const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
-        path: 'add',
-        loadComponent: () =>
-          import('./add-update-school/add-update-school.component').then(
-            (m) => m.AddUpdateSchoolComponent
-          ),
-      },
-    ],
-  },
-];
 
 @Component({
   selector: 'app-school',
   templateUrl: './school.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   standalone: true,
 })
 export class SchoolComponent implements OnInit {

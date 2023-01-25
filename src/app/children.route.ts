@@ -23,8 +23,8 @@ export const routes: Routes = [
       },
       {
         path: 'school',
-        loadComponent: () =>
-          import('./school/school.component').then((m) => m.SchoolComponent),
+        loadChildren: () =>
+          import('./school/school.route').then((m) => m.schoolRoutes),
       },
       {
         path: 'marks',

@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonService } from '../../common/common.service';
 import { SchoolModel } from '../../common/school.model';
 
@@ -8,7 +13,7 @@ import { SchoolModel } from '../../common/school.model';
   selector: 'app-add-update-school',
   templateUrl: './add-update-school.component.html',
   standalone: true,
-  import: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
 })
 export class AddUpdateSchoolComponent implements OnInit {
   @Input()
