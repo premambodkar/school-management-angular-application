@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonService } from '../common/common.service';
 import { SchoolModel } from '../common/school.model';
+import { SchoolService } from './school.service';
 
 @Component({
   selector: 'app-school',
@@ -15,26 +15,26 @@ export class SchoolComponent implements OnInit {
   schoolId!: number;
   addUpdateSchool: boolean = false;
 
-  constructor(public commonService: CommonService) {}
+  constructor(public schoolService: SchoolService) {}
 
   ngOnInit() {
     this.getAllSchool();
   }
 
   getSchool(schoolId: number) {
-    this.commonService.getSchool(schoolId).subscribe((resp: any) => {
+    this.schoolService.getSchool(schoolId).subscribe((resp: any) => {
       this.schools = resp;
     });
   }
 
   getAllSchool() {
-    this.commonService.getSchools().subscribe((resp: any) => {
+    this.schoolService.getSchools().subscribe((resp: any) => {
       this.schools = resp;
     });
   }
 
   deleteSchool(schoolId: number) {
-    this.commonService.deleteSchool(schoolId).subscribe((resp: any) => {
+    this.schoolService.deleteSchool(schoolId).subscribe((resp: any) => {
       this.getAllSchool();
     });
   }

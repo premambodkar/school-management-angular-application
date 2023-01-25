@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://school-management-node-application.premambodkar.repl.co",
+    "secure": false
+  }
+}

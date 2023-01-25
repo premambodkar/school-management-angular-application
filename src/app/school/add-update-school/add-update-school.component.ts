@@ -5,9 +5,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CommonService } from '../../common/common.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SchoolModel } from '../../common/school.model';
+import { SchoolService } from '../school.service';
 
 @Component({
   selector: 'app-add-update-school',
@@ -23,8 +23,9 @@ export class AddUpdateSchoolComponent implements OnInit {
   myForm: FormGroup;
 
   constructor(
-    public commonService: CommonService,
+    public schoolService: SchoolService,
     private fb: FormBuilder,
+    private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute
   ) {}
 
@@ -46,17 +47,19 @@ export class AddUpdateSchoolComponent implements OnInit {
       this.school.name = this.myForm.value['schoolName'];
       this.school.location = this.myForm.value['schoolocation'];
       if (this.school.id) {
-        this.commonService
-          .updateSchool(this.school)
-          .subscribe((resp: any) => {});
+        this.schoolService.updateSchool(this.school).subscribe((resp: any) => {
+          this.router.navigate(['./school']);
+        });
       } else {
-        this.commonService.addSchool(this.school).subscribe((resp: any) => {});
+        this.schoolService.addSchool(this.school).subscribe((resp: any) => {
+          this.router.navigate(['./school']);
+        });
       }
     }
   }
 
   getSchool() {
-    this.commonService.getSchool(this.schoolId).subscribe((resp) => {
+    this.schoolService.getSchool(this.schoolId).subscribe((resp) => {
       this.school = Object.assign(resp);
     });
   }
