@@ -8,6 +8,8 @@ import { SchoolModel } from '../common/school.model';
   providedIn: 'root',
 })
 export class SchoolService {
+  schoolListInfo: SchoolModel[] = [];
+
   constructor(
     private readonly http: HttpClient,
     private readonly commonService: CommonService
@@ -26,22 +28,44 @@ export class SchoolService {
   }
 
   getSchool(schoolId: number): Observable<any> {
-    const url = `${this.commonService.url}/getSchool?schoolId=${schoolId}`;
-    return this.http.get(url);
+    return of(
+      this.schoolListInfo.find((schoolInfo: SchoolModel) => {
+        schoolInfo.id === schoolId;
+      })
+    );
+    // const url = `${this.commonService.url}/getSchool?schoolId=${schoolId}`;
+    // return this.http.get(url);
   }
 
   addSchool(schoolInfo: SchoolModel) {
-    const url = `${this.commonService.url}/addSchool`;
-    return this.http.post(url, schoolInfo);
+    return of(this.schoolListInfo.push(schoolInfo));
+
+    // const url = `${this.commonService.url}/addSchool`;
+    // return this.http.post(url, schoolInfo);
   }
 
   updateSchool(schoolInfo: SchoolModel) {
-    const url = `${this.commonService.url}/updateSchool`;
-    return this.http.put(url, schoolInfo);
+    return of(
+      this.schoolListInfo.forEach((item: SchoolModel) => {
+        if (item.id === schoolInfo.id) {
+          item.location = schoolInfo.location;
+          item.name = schoolInfo.name;
+        }
+      })
+    );
+    // const url = `${this.commonService.url}/updateSchool`;
+    // return this.http.put(url, schoolInfo);
   }
 
   deleteSchool(schoolId: number) {
-    const url = `${this.commonService.url}/getSchool?schoolId=${schoolId}`;
-    return this.http.delete(url);
+    return of(
+      this.schoolListInfo.forEach((sclassInfo: SchoolModel, index: number) => {
+        if (sclassInfo.id === schoolId) {
+          this.schoolListInfo.splice(index, 1);
+        }
+      })
+    );
+    // const url = `${this.commonService.url}/getSchool?schoolId=${schoolId}`;
+    // return this.http.delete(url);
   }
 }
