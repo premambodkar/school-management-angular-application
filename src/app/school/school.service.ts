@@ -23,9 +23,9 @@ export class SchoolService {
 
   getSchool(schoolId: number): Observable<any> {
     return of(
-      this.schoolListInfo.find((schoolInfo: SchoolModel) => {
-        schoolInfo.id === schoolId;
-      })
+      this.schoolListInfo.find(
+        (schoolInfo: SchoolModel) => schoolInfo.id === schoolId
+      )
     );
     // const url = `${this.commonService.url}/getSchool?schoolId=${schoolId}`;
     // return this.http.get(url);

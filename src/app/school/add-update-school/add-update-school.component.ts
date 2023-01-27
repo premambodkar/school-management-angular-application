@@ -36,7 +36,7 @@ export class AddUpdateSchoolComponent implements OnInit {
     });
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['schoolId']) {
-        this.schoolId = params['schoolId'];
+        this.schoolId = +params['schoolId'];
         this.getSchool();
       }
     });
@@ -61,6 +61,10 @@ export class AddUpdateSchoolComponent implements OnInit {
   getSchool() {
     this.schoolService.getSchool(this.schoolId).subscribe((resp) => {
       this.school = Object.assign(resp);
+      this.myForm.patchValue({
+        schoolName: this.school.name,
+        schoolocation: this.school.location,
+      });
     });
   }
 }
