@@ -38,7 +38,7 @@ export class AddUpdateSclassComponent implements OnInit {
     });
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params['sclassId']) {
-        this.sclassId = params['sclassId'];
+        this.sclassId = +params['sclassId'];
         this.getSClass();
       }
     });
@@ -65,6 +65,12 @@ export class AddUpdateSclassComponent implements OnInit {
   getSClass() {
     this.sclassService.getSClass(this.sclassId).subscribe((resp) => {
       this.sclass = Object.assign(resp);
+      this.myForm.patchValue({
+        name: this.sclass.name,
+        location: this.sclass.location,
+        divisions: this.sclass.divisions,
+        noOfStudent: this.sclass.noOfStudent,
+      });
     });
   }
 }

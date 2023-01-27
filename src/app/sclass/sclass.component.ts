@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SclassModel } from '../common/sclass.model';
 import { SclassService } from './sclass.service';
 
@@ -12,7 +12,10 @@ import { SclassService } from './sclass.service';
 })
 export class SclassComponent implements OnInit {
   sclasses: SclassModel[] = [];
-  constructor(private readonly sclassService: SclassService) {}
+  constructor(
+    private readonly sclassService: SclassService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
     this.getAllSClass();

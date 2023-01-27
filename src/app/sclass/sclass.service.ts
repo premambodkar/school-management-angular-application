@@ -20,15 +20,16 @@ export class SclassService {
 
   getSClass(sclassId: number): Observable<any> {
     return of(
-      this.sclassInfoList.find((sclassInfo: SclassModel) => {
-        sclassInfo.id === sclassId;
-      })
+      this.sclassInfoList.find(
+        (sclassInfo: SclassModel) => sclassInfo.id === sclassId
+      )
     );
     // const url = `${this.commonService.url}/getSClass?schoolId=${schoolId}`;
     // return this.http.get(url);
   }
 
   addSClass(sclassInfo: SclassModel): Observable<any> {
+    sclassInfo.id = +Math.random() * 100;
     return of(this.sclassInfoList.push(sclassInfo));
     // const url = `${this.commonService.url}/addSClass`;
     // return this.http.post(url, sclassInfo);
