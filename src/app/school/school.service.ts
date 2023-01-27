@@ -32,6 +32,7 @@ export class SchoolService {
   }
 
   addSchool(schoolInfo: SchoolModel) {
+    schoolInfo.id = +Math.random() * 100;
     return of(this.schoolListInfo.push(schoolInfo));
 
     // const url = `${this.commonService.url}/addSchool`;
