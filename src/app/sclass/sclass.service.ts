@@ -50,13 +50,12 @@ export class SclassService {
   }
 
   deleteSClass(sclassId: number): Observable<any> {
-    const index = this.sclassInfoList.findIndex((sclassInfo: SclassModel) => {
-      return sclassInfo.id === sclassId;
-    });
-    console.log(
-      this.sclassInfoList.find((sclassInfo: SclassModel) => {
-        return sclassInfo.id === sclassId;
-      })
+    const index = this.sclassInfoList.forEach(
+      (sclassInfo: SclassModel, index: number) => {
+        if (sclassInfo.id === sclassId) {
+          this.sclassInfoList.splice(index, 1);
+        }
+      }
     );
     return of();
     // const url = `${this.commonService.url}/deleteSClass?sclassId=${sclassId}`;
