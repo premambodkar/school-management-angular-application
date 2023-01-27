@@ -24,8 +24,8 @@ export class SclassComponent implements OnInit {
     });
   }
 
-  deleteClass(schoolId: number) {
-    this.sclassService.deleteSClass(schoolId).subscribe((resp: any) => {
+  deleteClass(sclassId: number) {
+    this.sclassService.deleteSClass(sclassId).subscribe((resp: any) => {
       this.getAllSClass();
     });
   }

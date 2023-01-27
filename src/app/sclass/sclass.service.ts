@@ -8,15 +8,7 @@ import { SclassModel } from '../common/sclass.model';
   providedIn: 'root',
 })
 export class SclassService {
-  sclassInfoList: SclassModel[] = [
-    {
-      id: 1,
-      name: 'CLass 1',
-      location: 'First Floor',
-      divisions: ['A', 'B', 'C'],
-      noOfStudent: 150,
-    },
-  ];
+  sclassInfoList: SclassModel[] = [];
   constructor(
     private readonly http: HttpClient,
     private readonly commonService: CommonService
@@ -59,10 +51,15 @@ export class SclassService {
 
   deleteSClass(sclassId: number): Observable<any> {
     const index = this.sclassInfoList.findIndex((sclassInfo: SclassModel) => {
-      sclassInfo.id === sclassId;
+      return sclassInfo.id === sclassId;
     });
-    return of(this.sclassInfoList.splice(index, 1));
-    const url = `${this.commonService.url}/deleteSClass?sclassId=${sclassId}`;
-    return this.http.delete(url);
+    console.log(
+      this.sclassInfoList.find((sclassInfo: SclassModel) => {
+        return sclassInfo.id === sclassId;
+      })
+    );
+    return of();
+    // const url = `${this.commonService.url}/deleteSClass?sclassId=${sclassId}`;
+    // return this.http.delete(url);
   }
 }
